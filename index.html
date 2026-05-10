@@ -277,19 +277,35 @@
     border-color: var(--error); background: var(--error-soft);
   }
   .form-input.has-toggle { padding-right: 52px; }
+
+  input[type="password"]::-ms-reveal,
+  input[type="password"]::-ms-clear,
+  input[type="password"]::-webkit-credentials-auto-fill-button,
+  input[type="password"]::-webkit-caps-lock-indicator,
+  input[type="password"]::-webkit-reveal {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
   .input-icon {
     position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
     pointer-events: none;
   }
   .input-icon.below-label { top: calc(50% + 14px); }
+  .password-input-wrap { position: relative; }
   .pwd-toggle {
     position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+    width: 38px; height: 38px; min-width: 38px; min-height: 38px;
     background: transparent; border: none; cursor: pointer;
-    color: var(--ink-faded); padding: 8px; border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    min-width: 36px; min-height: 36px;
+    color: var(--ink-faded); padding: 0; border-radius: 10px;
+    display: inline-flex; align-items: center; justify-content: center;
+    line-height: 0;
   }
-  .pwd-toggle.with-label { top: calc(50% + 14px); }
+  .pwd-toggle svg { width: 20px; height: 20px; display: block; flex-shrink: 0; }
+  .password-input-wrap .pwd-toggle { z-index: 3; }
+  .pwd-toggle.with-label { top: 50%; }
   .pwd-toggle:hover { color: var(--terracotta); background: var(--cream-deep); }
   .form-error {
     font-size: 13px; color: var(--error); margin-top: 6px;
@@ -1203,6 +1219,269 @@
     line-height: 1.5; max-width: 240px;
   }
 
+
+
+  .phone[data-theme="dark"] {
+    --cream: #15110E;
+    --cream-deep: #403126;
+    --cream-soft: #211914;
+    --terracotta: #F09968;
+    --terracotta-deep: #FFB184;
+    --terracotta-soft: #5A382B;
+    --sage: #AFC486;
+    --sage-deep: #D5E6B1;
+    --sage-soft: #314029;
+    --ink: #FFF4E8;
+    --ink-soft: #EAD8C4;
+    --ink-faded: #BFA891;
+    --rose: #573536;
+    --error: #FF9A9A;
+    --error-soft: #482323;
+    --warning: #F2B761;
+    --shadow: rgba(0, 0, 0, 0.42);
+  }
+
+  .phone[data-theme="dark"] .screen,
+  .phone[data-theme="dark"] .app-screen,
+  .phone[data-theme="dark"] .nav,
+  .phone[data-theme="dark"] .app-header,
+  .phone[data-theme="dark"] .bottom-nav,
+  .phone[data-theme="dark"] .event-cta,
+  .phone[data-theme="dark"] .progress {
+    background: var(--cream);
+  }
+  .phone[data-theme="dark"] .form-input,
+  .phone[data-theme="dark"] .search-input,
+  .phone[data-theme="dark"] .chip,
+  .phone[data-theme="dark"] .filter-chip,
+  .phone[data-theme="dark"] .filter-btn,
+  .phone[data-theme="dark"] .social-btn,
+  .phone[data-theme="dark"] .profile-list-item,
+  .phone[data-theme="dark"] .stat-card,
+  .phone[data-theme="dark"] .event-card,
+  .phone[data-theme="dark"] .similar-card,
+  .phone[data-theme="dark"] .accordion,
+  .phone[data-theme="dark"] .pwd-strength,
+  .phone[data-theme="dark"] .event-meta-pill {
+    background: #241C16;
+    border-color: #4A382C;
+  }
+  .phone[data-theme="dark"] .form-input:focus,
+  .phone[data-theme="dark"] .search-input:focus {
+    background: #2B211A;
+    border-color: var(--terracotta);
+    box-shadow: 0 0 0 4px rgba(240, 153, 104, 0.18);
+  }
+  .phone[data-theme="dark"] .map-container {
+    background: linear-gradient(135deg, #201913 0%, #2A2119 100%);
+  }
+  .phone[data-theme="dark"] .map-bg {
+    background-image:
+      linear-gradient(rgba(240, 153, 104, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(240, 153, 104, 0.08) 1px, transparent 1px);
+  }
+  .phone[data-theme="dark"] .map-street { background: #30251D; box-shadow: inset 0 0 0 1px #4A382C; }
+  .phone[data-theme="dark"] .bottom-sheet,
+  .phone[data-theme="dark"] .modal {
+    background: #1C1511;
+    border: 1px solid #4A382C;
+  }
+  .phone[data-theme="dark"] .btn-secondary { border-color: var(--ink-soft); color: var(--ink); }
+  .phone[data-theme="dark"] .btn-ghost { background: #2B211A; color: var(--ink-soft); }
+  .phone[data-theme="dark"] .btn-primary:disabled { background: #3A2C23; color: #9E8872; }
+  .phone[data-theme="dark"] .profile-header {
+    background: radial-gradient(circle at 50% 0%, rgba(240, 153, 104, 0.12), transparent 62%);
+  }
+  .phone[data-theme="dark"] .profile-avatar {
+    background: linear-gradient(135deg, #F09968, #AFC486);
+    color: #15110E;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  }
+  .phone[data-theme="dark"] .profile-list-icon {
+    background: #33271F;
+    color: var(--terracotta-deep);
+  }
+  .phone[data-theme="dark"] .profile-section .section-title {
+    color: #D8C2AA;
+  }
+  .phone[data-theme="dark"] .settings-card {
+    background: linear-gradient(180deg, #261D17 0%, #211914 100%);
+    border-color: #564133;
+    box-shadow: inset 0 1px 0 rgba(255, 244, 232, 0.04);
+  }
+  .phone[data-theme="dark"] .settings-card:hover {
+    background: linear-gradient(180deg, #2A2019 0%, #231B15 100%);
+  }
+  .phone[data-theme="dark"] .settings-segmented {
+    background: #17110E;
+    border-color: #4A382C;
+  }
+  .phone[data-theme="dark"] .settings-segmented button {
+    color: #D8C2AA;
+  }
+  .phone[data-theme="dark"] .settings-segmented button:hover {
+    background: #2F241D;
+    color: #FFB184;
+  }
+  .phone[data-theme="dark"] .settings-segmented button.active {
+    background: #F09968;
+    color: #15110E;
+    border-color: #F09968;
+    box-shadow: 0 6px 16px rgba(240, 153, 104, 0.22);
+  }
+
+  .font-large .screen-title { font-size: 31px; }
+  .font-large .hero-text h1 { font-size: 37px; }
+  .font-large .screen-subtitle,
+  .font-large .section-text,
+  .font-large .consent-text,
+  .font-large .profile-list-text { font-size: 15.5px; }
+  .font-large .form-input,
+  .font-large .btn { font-size: 16px; }
+  .font-large .event-title { font-size: 29px; }
+
+  .nav,
+  .app-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+  }
+  .progress {
+    position: sticky;
+    top: 48px;
+    z-index: 39;
+    background: var(--cream);
+  }
+  .bottom-nav,
+  .event-cta {
+    position: sticky;
+    bottom: 0;
+  }
+
+  .screen-title { font-size: 30px; margin-top: 20px; }
+  .screen-subtitle { font-size: 15px; color: var(--ink-soft); }
+  .form-label { color: var(--ink); }
+  .form-input,
+  .search-input,
+  .filter-btn,
+  .filter-chip,
+  .chip,
+  .social-btn,
+  .profile-list-item,
+  .stat-card,
+  .event-card,
+  .similar-card,
+  .event-meta-pill {
+    border-color: var(--cream-deep);
+  }
+  .form-input {
+    border-color: var(--cream-deep);
+    background: var(--cream-soft);
+    color: var(--ink);
+  }
+  .form-input::placeholder,
+  .search-input::placeholder { color: var(--ink-faded); opacity: 1; }
+  .form-input.valid { border-color: var(--sage); }
+  .input-icon.below-label { top: 43px; }
+
+  .signup-link a { font-size: 16px; }
+
+  .icon-btn { width: 40px; height: 40px; }
+  .icon-btn svg,
+  .nav-item svg,
+  .profile-list-icon svg,
+  .event-meta-pill svg,
+  .filter-btn svg { width: 21px; height: 21px; }
+  .icon-btn.bookmarked { background: var(--terracotta); color: var(--cream); }
+  .icon-btn.reported { background: var(--error-soft); color: var(--error); }
+
+  .verify-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--sage-deep);
+    background: var(--sage-soft);
+  }
+  .verify-status.checking { color: var(--ink); background: var(--cream); border: 1px solid var(--cream-deep); }
+  .verify-status .spinner { border-color: rgba(78, 94, 59, 0.25); border-top-color: var(--sage); }
+
+  .vibe-row {
+    display: grid;
+    grid-template-columns: minmax(128px, 1fr) minmax(110px, 1.25fr) 42px;
+    align-items: center;
+    gap: 10px;
+  }
+  .vibe-label { min-width: 0; }
+  .vibe-bar { width: 100%; }
+
+  .consent-row.needs-action {
+    background: var(--cream-soft);
+    border-radius: 14px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border: 1px solid var(--cream-deep);
+  }
+  .consent-row.needs-action:hover {
+    border-color: var(--terracotta-soft);
+    background: var(--cream);
+  }
+  .consent-note {
+    font-size: 12px;
+    color: var(--ink-faded);
+    margin-top: 4px;
+    font-weight: 600;
+  }
+  .settings-card {
+    display: block;
+    padding: 14px;
+    cursor: default;
+  }
+  .settings-card:hover {
+    transform: none;
+  }
+  .settings-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .settings-segmented {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 4px;
+    border-radius: 999px;
+    background: var(--cream);
+    border: 1px solid var(--cream-deep);
+  }
+  .settings-segmented button {
+    flex: 1;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--ink-soft);
+    border-radius: 999px;
+    min-height: 38px;
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .settings-segmented button:hover {
+    background: var(--cream-soft);
+    color: var(--terracotta-deep);
+  }
+  .settings-segmented button.active {
+    background: var(--terracotta);
+    color: var(--cream);
+    border-color: var(--terracotta);
+    box-shadow: 0 4px 12px rgba(184, 84, 43, 0.18);
+  }
+
   @media (max-width: 480px) {
     .phone {
       min-height: 100vh;
@@ -1236,8 +1515,8 @@ const t = {
     signup: {
       title: "Create your", titleEm: "account",
       subtitle: "We'll only show your first name to others.",
-      first: "First name", firstPh: "Anna",
-      last: "Last name", lastPh: "Kowalska",
+      first: "First name", firstPh: "Name",
+      last: "Last name", lastPh: "Surname",
       email: "Email", emailPh: "you@example.com",
       password: "Password", passwordPh: "At least 8 characters",
       pwdInfo: "Password requirements",
@@ -1277,6 +1556,7 @@ const t = {
       verifySubtitle: "Take a selfie showing the gesture below.",
       instruction: "Show a peace sign ✌️",
       takePhoto: "Take selfie", retake: "Retake",
+      checking: "Checking selfie...", verifiedOk: "Selfie check passed",
       verifyInfo: "Your verification photo is private. Compared with your profile photo, then deleted.",
       whyAsk: "Why we ask",
       whyAskText: "Verification keeps Ahoj! safe by preventing fake accounts. Your selfie is compared automatically and deleted within 24 hours.",
@@ -1298,7 +1578,17 @@ const t = {
       rodo: "I agree to the processing of my personal data per",
       rodoLink: "GDPR regulations",
       marketing: "Send me updates about new events and features (optional)",
-      acceptAll: "Accept required"
+      acceptAll: "Accept required",
+      readRulesFirst: "Tap here — first open house rules, then Terms",
+      readTermsFirst: "Tap here to open and read Terms",
+      rulesRead: "House rules read",
+      termsRead: "Terms read",
+      termsModalTitle: "Terms of Service",
+      termsModalText: "These terms explain how Ahoj! keeps events safer: verified profiles, respectful behaviour, event cancellation rules and reporting abuse.",
+      privacyModalTitle: "Privacy Policy",
+      privacyModalText: "We process only the data needed to run your account, recommend events and protect the community. You can request export or deletion anytime.",
+      close: "Close",
+      markRead: "I have read this"
     },
     done: {
       title: "Welcome to", titleEm: "Ahoj!",
@@ -1355,6 +1645,12 @@ const t = {
       myEvents: "My events", editProfile: "Edit profile",
       preferences: "Preferences", language: "Language",
       privacy: "Privacy & data", help: "Help",
+      fontSize: "Font size",
+      fontNormal: "Normal",
+      fontLarge: "Larger",
+      theme: "Theme",
+      lightMode: "Light",
+      darkMode: "Dark",
       logout: "Log out",
       logoutConfirm: "You're logged out",
       logoutTitle: "Log out of Ahoj!?",
@@ -1381,8 +1677,8 @@ const t = {
     signup: {
       title: "Załóż", titleEm: "konto",
       subtitle: "Innym pokażemy tylko Twoje imię.",
-      first: "Imię", firstPh: "Anna",
-      last: "Nazwisko", lastPh: "Kowalska",
+      first: "Imię", firstPh: "Imię",
+      last: "Nazwisko", lastPh: "Nazwisko",
       email: "Email", emailPh: "ty@example.com",
       password: "Hasło", passwordPh: "Min. 8 znaków",
       pwdInfo: "Wymagania hasła",
@@ -1422,6 +1718,7 @@ const t = {
       verifySubtitle: "Zrób selfie z poniższym gestem.",
       instruction: "Pokaż znak pokoju ✌️",
       takePhoto: "Zrób selfie", retake: "Powtórz",
+      checking: "Sprawdzamy selfie...", verifiedOk: "Selfie zaakceptowane",
       verifyInfo: "Zdjęcie weryfikacyjne jest prywatne. Po porównaniu jest usuwane.",
       whyAsk: "Po co o to pytamy",
       whyAskText: "Weryfikacja chroni społeczność Ahoj! przed fałszywymi kontami. Twoje selfie jest porównywane automatycznie i usuwane w ciągu 24h.",
@@ -1443,7 +1740,17 @@ const t = {
       rodo: "Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z",
       rodoLink: "RODO",
       marketing: "Chcę otrzymywać informacje o nowych wydarzeniach (opcjonalne)",
-      acceptAll: "Zaakceptuj wymagane"
+      acceptAll: "Zaakceptuj wymagane",
+      readRulesFirst: "Najpierw przeczytaj zasady społeczności",
+      readTermsFirst: "Kliknij tutaj, aby otworzyć i przeczytać regulamin",
+      rulesRead: "Zasady przeczytane",
+      termsRead: "Regulamin przeczytany",
+      termsModalTitle: "Regulamin",
+      termsModalText: "Te zasady wyjaśniają, jak Ahoj! dba o bezpieczniejsze wydarzenia: zweryfikowane profile, szacunek, reguły odwoływania spotkań i zgłaszanie nadużyć.",
+      privacyModalTitle: "Polityka prywatności",
+      privacyModalText: "Przetwarzamy tylko dane potrzebne do obsługi konta, rekomendacji wydarzeń i ochrony społeczności. Możesz poprosić o eksport lub usunięcie danych.",
+      close: "Zamknij",
+      markRead: "Przeczytałam/em"
     },
     done: {
       title: "Witaj w", titleEm: "Ahoj!",
@@ -1500,6 +1807,12 @@ const t = {
       myEvents: "Moje wydarzenia", editProfile: "Edytuj profil",
       preferences: "Preferencje", language: "Język",
       privacy: "Prywatność i dane", help: "Pomoc",
+      fontSize: "Rozmiar czcionki",
+      fontNormal: "Normalny",
+      fontLarge: "Większy",
+      theme: "Motyw",
+      lightMode: "Jasny",
+      darkMode: "Ciemny",
       logout: "Wyloguj się",
       logoutConfirm: "Zostałaś/eś wylogowana/y",
       logoutTitle: "Wylogować z Ahoj!?",
@@ -1718,17 +2031,19 @@ const WelcomeScreen = ({ onSignup, onLogin, lang, setLang, showToast }) => {
 
         <div className="form-group">
           <label className="sr-only" htmlFor="login-password">{a.password}</label>
-          <input id="login-password" className={`form-input has-toggle`}
-            placeholder={a.passwordPh} type={showPwd ? 'text' : 'password'} value={password}
-            autoComplete="current-password"
-            onChange={e => setPassword(e.target.value)}
-            onBlur={() => setTouched({...touched, password: true})} />
-          <button type="button" className="pwd-toggle"
-            onClick={() => setShowPwd(!showPwd)}
-            aria-label={showPwd ? a.hidePwd : a.showPwd}
-            aria-pressed={showPwd}>
-            {showPwd ? <Icon.EyeOff /> : <Icon.Eye />}
-          </button>
+          <div className="password-input-wrap">
+            <input id="login-password" className={`form-input has-toggle`}
+              placeholder={a.passwordPh} type={showPwd ? 'text' : 'password'} value={password}
+              autoComplete="current-password"
+              onChange={e => setPassword(e.target.value)}
+              onBlur={() => setTouched({...touched, password: true})} />
+            <button type="button" className="pwd-toggle"
+              onClick={() => setShowPwd(!showPwd)}
+              aria-label={showPwd ? a.hidePwd : a.showPwd}
+              aria-pressed={showPwd}>
+              {showPwd ? <Icon.EyeOff /> : <Icon.Eye />}
+            </button>
+          </div>
         </div>
 
         <button className={`btn btn-primary ${loading ? 'loading' : ''}`} onClick={handleLogin} disabled={loading}>
@@ -1822,17 +2137,19 @@ const SignupScreen = ({ data, setData, onNext, onBack, lang, setLang, showToast 
                 <InfoTooltip open={showPwdInfo} text={c.pwdInfoText} onClose={() => setShowPwdInfo(false)} />
               </span>
             </label>
-            <input id="su-pwd" type={showPwd ? 'text' : 'password'}
-              className={`form-input has-toggle ${pwdAllMet ? 'valid' : ''}`}
-              placeholder={c.passwordPh} value={data.password} autoComplete="new-password"
-              onChange={e => setData({...data, password: e.target.value})}
-              aria-describedby="su-pwd-strength" />
-            <button type="button" className="pwd-toggle with-label"
-              onClick={() => setShowPwd(!showPwd)}
-              aria-label={showPwd ? t[lang].auth.hidePwd : t[lang].auth.showPwd}
-              aria-pressed={showPwd}>
-              {showPwd ? <Icon.EyeOff /> : <Icon.Eye />}
-            </button>
+            <div className="password-input-wrap">
+              <input id="su-pwd" type={showPwd ? 'text' : 'password'}
+                className={`form-input has-toggle ${pwdAllMet ? 'valid' : ''}`}
+                placeholder={c.passwordPh} value={data.password} autoComplete="new-password"
+                onChange={e => setData({...data, password: e.target.value})}
+                aria-describedby="su-pwd-strength" />
+              <button type="button" className="pwd-toggle with-label"
+                onClick={() => setShowPwd(!showPwd)}
+                aria-label={showPwd ? t[lang].auth.hidePwd : t[lang].auth.showPwd}
+                aria-pressed={showPwd}>
+                {showPwd ? <Icon.EyeOff /> : <Icon.Eye />}
+              </button>
+            </div>
             {data.password.length > 0 && (
               <div id="su-pwd-strength">
                 <PasswordStrength password={data.password} lang={lang} />
@@ -1927,7 +2244,7 @@ const GenderAgeScreen = ({ data, setData, onNext, onBack, lang, setLang }) => {
 const PhotoVerifyScreen = ({ data, setData, onNext, onBack, lang, setLang }) => {
   const c = t[lang].photo;
   const [counting, setCounting] = useState(false);
-  const [seconds, setSeconds] = useState(10);
+  const [seconds, setSeconds] = useState(3);
   const [showWhy, setShowWhy] = useState(false);
 
   useEffect(() => {
@@ -1943,7 +2260,7 @@ const PhotoVerifyScreen = ({ data, setData, onNext, onBack, lang, setLang }) => 
 
   const radius = 32;
   const circumference = 2 * Math.PI * radius;
-  const offset = circumference * (1 - seconds / 10);
+  const offset = circumference * (1 - seconds / 3);
 
   const canContinue = data.hasPhoto && data.verified;
 
@@ -2004,29 +2321,18 @@ const PhotoVerifyScreen = ({ data, setData, onNext, onBack, lang, setLang }) => 
                 <div className="verify-instruction">{c.instruction}</div>
 
                 {counting ? (
-                  <div className="countdown-circle" role="timer" aria-live="polite" aria-label={`${seconds}s`}>
-                    <svg width="72" height="72" aria-hidden="true">
-                      <circle className="bg-circle" cx="36" cy="36" r={radius} />
-                      <circle className="fg-circle" cx="36" cy="36" r={radius}
-                        strokeDasharray={circumference}
-                        strokeDashoffset={offset} />
-                    </svg>
-                    <div className="countdown-number">{seconds}</div>
+                  <div className="verify-status checking" role="status" aria-live="polite">
+                    <span className="spinner" aria-hidden="true"></span>
+                    {c.checking}
                   </div>
                 ) : data.verified ? (
-                  <div className="countdown-circle">
-                    <div style={{
-                      width: 72, height: 72, borderRadius: '50%',
-                      background: 'var(--sage)', display: 'flex',
-                      alignItems: 'center', justifyContent: 'center',
-                      color: 'var(--cream)'
-                    }} aria-label={lang === 'pl' ? 'Zweryfikowano' : 'Verified'}>
-                      <Icon.CheckLarge />
-                    </div>
+                  <div className="verify-status" role="status" aria-live="polite">
+                    <Icon.CheckLarge />
+                    {c.verifiedOk}
                   </div>
                 ) : (
                   <button className="btn btn-secondary" style={{maxWidth: 200, margin: '0 auto'}}
-                    onClick={() => { setSeconds(10); setCounting(true); }}>
+                    onClick={() => { setSeconds(3); setCounting(true); }}>
                     <Icon.Camera /> {c.takePhoto}
                   </button>
                 )}
@@ -2058,6 +2364,9 @@ const PhotoVerifyScreen = ({ data, setData, onNext, onBack, lang, setLang }) => 
 const InterestsConsentsScreen = ({ data, setData, onNext, onBack, lang, setLang }) => {
   const c = t[lang].interests;
   const [rulesOpen, setRulesOpen] = useState(false);
+  const [rulesRead, setRulesRead] = useState(false);
+  const [termsRead, setTermsRead] = useState(false);
+  const [activeDoc, setActiveDoc] = useState(null);
   const cats = [
     { id: 'creative', title: c.creative, iconClass: 'creative', icon: '✿', items: lang === 'pl'
       ? ['Fotografia', 'Pisanie', 'Ceramika', 'Malarstwo', 'Sztuka cyfrowa']
@@ -2077,12 +2386,24 @@ const InterestsConsentsScreen = ({ data, setData, onNext, onBack, lang, setLang 
     setData({...data, interests: newSet});
   };
 
+  const openMissingRequiredStep = () => {
+    if (!rulesRead) { setRulesOpen(true); setRulesRead(true); return true; }
+    if (!termsRead) { setActiveDoc('terms'); return true; }
+    return false;
+  };
+
   const acceptAllRequired = () => {
+    if (openMissingRequiredStep()) return;
     setData({...data, consentTerms: true, consentRodo: true});
   };
 
+  const toggleTermsConsent = () => {
+    if (openMissingRequiredStep()) return;
+    setData({...data, consentTerms: !data.consentTerms});
+  };
+
   const interestsValid = data.interests.length >= 3 && data.interests.length <= 10;
-  const valid = interestsValid && data.consentTerms && data.consentRodo;
+  const valid = interestsValid && rulesRead && termsRead && data.consentTerms && data.consentRodo;
 
   return (
     <>
@@ -2119,7 +2440,7 @@ const InterestsConsentsScreen = ({ data, setData, onNext, onBack, lang, setLang 
 
         <div style={{marginTop: 4}}>
           <div className={`accordion`} aria-expanded={rulesOpen}>
-            <button className="accordion-header" onClick={() => setRulesOpen(!rulesOpen)} aria-expanded={rulesOpen}>
+            <button className="accordion-header" onClick={() => { setRulesOpen(!rulesOpen); if (!rulesOpen) setRulesRead(true); }} aria-expanded={rulesOpen}>
               <span><Icon.Shield /> {c.rulesTitle}</span>
               <span className="accordion-icon"><Icon.ChevronDown /></span>
             </button>
@@ -2131,17 +2452,19 @@ const InterestsConsentsScreen = ({ data, setData, onNext, onBack, lang, setLang 
                   <li>{c.rule3}</li>
                   <li>{c.rule4}</li>
                 </ul>
+                <div className="consent-note">✓ {c.rulesRead}</div>
               </div>
             )}
           </div>
 
-          <div className="consent-row" onClick={() => setData({...data, consentTerms: !data.consentTerms})} onKeyDown={handleKeyClick(() => setData({...data, consentTerms: !data.consentTerms}))} tabIndex={0} role="checkbox" aria-checked={data.consentTerms}>
+          <div className={`consent-row ${(!rulesRead || !termsRead) ? 'needs-action' : ''}`} onClick={toggleTermsConsent} onKeyDown={handleKeyClick(toggleTermsConsent)} tabIndex={0} role="checkbox" aria-checked={data.consentTerms}>
             <div className="checkbox" aria-checked={data.consentTerms} aria-hidden="true">
               {data.consentTerms && <Icon.Check />}
             </div>
             <div className="consent-text">
-              {c.terms} <a className="consent-link" href="#" target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}>{c.termsLink}</a> {c.and} <a className="consent-link" href="#" target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}>{c.privacy}</a>.
+              {c.terms} <button type="button" className="consent-link" style={{background:'none', border:0, fontFamily:'inherit', fontSize:'inherit'}} onClick={e => { e.stopPropagation(); if (!rulesRead) { setRulesOpen(true); setRulesRead(true); } else { setActiveDoc('terms'); } }}>{c.termsLink}</button> {c.and} <button type="button" className="consent-link" style={{background:'none', border:0, fontFamily:'inherit', fontSize:'inherit'}} onClick={e => { e.stopPropagation(); setActiveDoc('privacy'); }}>{c.privacy}</button>.
               <span className="consent-required"> ({c.required})</span>
+              {(!rulesRead || !termsRead) && <div className="consent-note">{!rulesRead ? c.readRulesFirst : c.readTermsFirst}</div>}
             </div>
           </div>
 
@@ -2168,6 +2491,18 @@ const InterestsConsentsScreen = ({ data, setData, onNext, onBack, lang, setLang 
             </button>
           )}
         </div>
+
+        {activeDoc && (
+          <div className="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="doc-title">
+            <div className="modal">
+              <div className="modal-icon"><Icon.Shield /></div>
+              <div className="modal-title" id="doc-title">{activeDoc === 'terms' ? c.termsModalTitle : c.privacyModalTitle}</div>
+              <div className="modal-text">{activeDoc === 'terms' ? c.termsModalText : c.privacyModalText}</div>
+              <button className="btn btn-primary" onClick={() => { if (activeDoc === 'terms') setTermsRead(true); setActiveDoc(null); }} style={{marginBottom: 8}}>{activeDoc === 'terms' ? c.markRead : c.close}</button>
+              {activeDoc === 'terms' && <button className="btn btn-ghost" onClick={() => setActiveDoc(null)}>{c.close}</button>}
+            </div>
+          </div>
+        )}
 
         <div className="footer">
           <button className="btn btn-primary" onClick={onNext} disabled={!valid}>{c.continue}</button>
@@ -2411,9 +2746,10 @@ const MapScreen = ({ onPinClick, onTabChange, activeTab, lang }) => {
   );
 };
 
-const EventDetail = ({ event, onBack, onJoin, lang }) => {
+const EventDetail = ({ event, onBack, onJoin, lang, savedEvents, onToggleSave, showToast }) => {
   const c = t[lang].event;
-  const [bookmarked, setBookmarked] = useState(false);
+  const bookmarked = savedEvents.some(e => e.id === event.id);
+  const [reported, setReported] = useState(false);
   const [readMore, setReadMore] = useState(false);
 
   return (
@@ -2430,13 +2766,16 @@ const EventDetail = ({ event, onBack, onJoin, lang }) => {
           {event.spontaneous && <div className="event-tag spontaneous">⚡ {c.spontaneous}</div>}
         </div>
         <div className="event-cover-actions">
-          <button className={`icon-btn ${bookmarked ? 'bookmarked' : ''}`} onClick={() => setBookmarked(!bookmarked)}
+          <button type="button" className={`icon-btn ${bookmarked ? 'bookmarked' : ''}`} onClick={() => onToggleSave(event)}
             aria-label={bookmarked ? c.bookmarkRemove : c.bookmark}
             aria-pressed={bookmarked}>
             <Icon.Bookmark filled={bookmarked} />
           </button>
-          <button className="icon-btn" aria-label={c.share}><Icon.Share /></button>
-          <button className="icon-btn" aria-label={c.report}><Icon.Flag /></button>
+          <button type="button" className="icon-btn" aria-label={c.share}><Icon.Share /></button>
+          <button type="button" className={`icon-btn ${reported ? 'reported' : ''}`} aria-label={c.report} aria-pressed={reported}
+            onClick={() => { setReported(!reported); showToast(lang === 'pl' ? 'Dziękujemy za zgłoszenie.' : 'Thanks for the report.', 'success'); }}>
+            <Icon.Flag />
+          </button>
         </div>
       </div>
 
@@ -2539,26 +2878,26 @@ const EventDetail = ({ event, onBack, onJoin, lang }) => {
   );
 };
 
-const SavedScreen = ({ onTabChange, activeTab, lang, joinedEvents, onPinClick }) => {
+const SavedScreen = ({ onTabChange, activeTab, lang, joinedEvents, savedEvents, onPinClick, onBack }) => {
   const c = t[lang].saved;
   const [tab, setTab] = useState('going');
   return (
     <div className="app-screen">
-      <Nav showBack={false} lang={lang} setLang={() => {}} />
+      <Nav showBack={true} onBack={onBack} lang={lang} setLang={() => {}} />
 
       <div className="tab-row" role="tablist">
         <button type="button" className="tab" role="tab" aria-selected={tab === 'going'} onClick={() => setTab('going')}>
           ✓ {c.going} ({joinedEvents.length})
         </button>
         <button type="button" className="tab" role="tab" aria-selected={tab === 'wishlist'} onClick={() => setTab('wishlist')}>
-          <Icon.BookmarkNav /> {c.wishlist} (0)
+          <Icon.BookmarkNav /> {c.wishlist} ({savedEvents.length})
         </button>
       </div>
 
       <main id="main-content" className="screen" style={{padding: 0, overflow: 'auto'}}>
-        {tab === 'going' && joinedEvents.length > 0 ? (
+        {((tab === 'going' ? joinedEvents : savedEvents).length > 0) ? (
           <div style={{padding: 20}}>
-            {joinedEvents.map(ev => (
+            {(tab === 'going' ? joinedEvents : savedEvents).map(ev => (
               <button key={ev.id} type="button" className="event-card" onClick={() => onPinClick(ev)}>
                 <div className={`event-card-icon ${ev.cover === 'green' ? 'sage' : ''}`} aria-hidden="true">{ev.icon}</div>
                 <div className="event-card-info">
@@ -2582,13 +2921,13 @@ const SavedScreen = ({ onTabChange, activeTab, lang, joinedEvents, onPinClick })
   );
 };
 
-const ProfileScreen = ({ onTabChange, activeTab, lang, setLang, userData, onLogoutRequest, joinedCount }) => {
+const ProfileScreen = ({ onTabChange, activeTab, lang, setLang, userData, onLogoutRequest, joinedCount, fontSize, setFontSize, theme, setTheme, onBack }) => {
   const c = t[lang].profile;
   const initial = userData.firstName ? userData.firstName[0].toUpperCase() : 'A';
 
   return (
     <div className="app-screen">
-      <Nav showBack={false} lang={lang} setLang={setLang} />
+      <Nav showBack={true} onBack={onBack} lang={lang} setLang={setLang} />
 
       <main id="main-content" style={{flex: 1, overflowY: 'auto'}}>
         <div className="profile-header">
@@ -2634,6 +2973,26 @@ const ProfileScreen = ({ onTabChange, activeTab, lang, setLang, userData, onLogo
             <div className="profile-list-icon"><Icon.Globe /></div>
             <div className="profile-list-text">{c.language}: {lang === 'pl' ? 'Polski' : 'English'}</div>
           </button>
+          <div className="profile-list-item settings-card">
+            <div className="settings-row">
+              <div className="profile-list-icon"><Icon.Edit /></div>
+              <div className="profile-list-text">{c.fontSize}</div>
+            </div>
+            <div className="settings-segmented" role="group" aria-label={c.fontSize}>
+              <button type="button" className={fontSize === 'normal' ? 'active' : ''} onClick={() => setFontSize('normal')}>{c.fontNormal}</button>
+              <button type="button" className={fontSize === 'large' ? 'active' : ''} onClick={() => setFontSize('large')}>{c.fontLarge}</button>
+            </div>
+          </div>
+          <div className="profile-list-item settings-card">
+            <div className="settings-row">
+              <div className="profile-list-icon"><Icon.Globe /></div>
+              <div className="profile-list-text">{c.theme}</div>
+            </div>
+            <div className="settings-segmented" role="group" aria-label={c.theme}>
+              <button type="button" className={theme === 'light' ? 'active' : ''} onClick={() => setTheme('light')}>{c.lightMode}</button>
+              <button type="button" className={theme === 'dark' ? 'active' : ''} onClick={() => setTheme('dark')}>{c.darkMode}</button>
+            </div>
+          </div>
           <button type="button" className="profile-list-item">
             <div className="profile-list-icon"><Icon.Lock /></div>
             <div className="profile-list-text">{c.privacy}</div>
@@ -2657,11 +3016,11 @@ const ProfileScreen = ({ onTabChange, activeTab, lang, setLang, userData, onLogo
   );
 };
 
-const ExploreScreen = ({ onTabChange, activeTab, lang, onPinClick }) => {
+const ExploreScreen = ({ onTabChange, activeTab, lang, onPinClick, onBack }) => {
   const events = mockEvents(lang);
   return (
     <div className="app-screen">
-      <Nav showBack={false} lang={lang} setLang={() => {}} />
+      <Nav showBack={true} onBack={onBack} lang={lang} setLang={() => {}} />
       <main id="main-content" className="screen" style={{padding: '8px 20px 20px', overflow: 'auto'}}>
         <h1 className="screen-title" style={{fontSize: 22, textAlign: 'left', marginTop: 4}}>
           {lang === 'pl' ? 'Odkrywaj' : 'Explore'}
@@ -2785,6 +3144,9 @@ const App = () => {
   const [greetingFading, setGreetingFading] = useState(false);
   const [greetingText, setGreetingText] = useState('');
   const [toast, setToast] = useState(null);
+  const [fontSize, setFontSize] = useState('normal');
+  const [theme, setTheme] = useState('light');
+  const [savedEvents, setSavedEvents] = useState([]);
 
   useEffect(() => {
     document.documentElement.lang = lang;
@@ -2842,8 +3204,8 @@ const App = () => {
     <PhotoVerifyScreen data={data} setData={setData} onNext={() => setStep(3)} onBack={() => setStep(1)} lang={lang} setLang={setLang} />,
     <InterestsConsentsScreen data={data} setData={setData} onNext={() => setStep(4)} onBack={() => setStep(2)} lang={lang} setLang={setLang} />,
     <DoneScreen onEnter={() => {
-      const greeting = `${t[lang].signup.hello} ${data.firstName}`;
-      triggerGreeting(greeting, () => setStage('app'));
+      setStage('app');
+      showToast(`${t[lang].signup.hello} ${data.firstName}`, 'success');
     }} lang={lang} setLang={setLang} />
   ];
 
@@ -2860,6 +3222,7 @@ const App = () => {
     setData(initialData);
     setStep(0);
     setJoinedEvents([]);
+    setSavedEvents([]);
     setAppTab('map');
     setSelectedEvent(null);
     showToast(t[lang].profile.logoutConfirm, 'success');
@@ -2880,7 +3243,10 @@ const App = () => {
         event={selectedEvent}
         onBack={() => setSelectedEvent(null)}
         onJoin={handleJoinEvent}
-        lang={lang} />;
+        lang={lang}
+        savedEvents={savedEvents}
+        onToggleSave={(event) => setSavedEvents(prev => prev.some(e => e.id === event.id) ? prev.filter(e => e.id !== event.id) : [...prev, event])}
+        showToast={showToast} />;
     } else if (appTab === 'map') {
       content = <MapScreen
         onPinClick={(ev) => setSelectedEvent(ev)}
@@ -2892,14 +3258,17 @@ const App = () => {
         onTabChange={setAppTab}
         activeTab={appTab}
         lang={lang}
-        onPinClick={(ev) => setSelectedEvent(ev)} />;
+        onPinClick={(ev) => setSelectedEvent(ev)}
+        onBack={() => setAppTab('map')} />;
     } else if (appTab === 'saved') {
       content = <SavedScreen
         onTabChange={setAppTab}
         activeTab={appTab}
         lang={lang}
         joinedEvents={joinedEvents}
-        onPinClick={(ev) => setSelectedEvent(ev)} />;
+        savedEvents={savedEvents}
+        onPinClick={(ev) => setSelectedEvent(ev)}
+        onBack={() => setAppTab('map')} />;
     } else if (appTab === 'profile') {
       content = <ProfileScreen
         onTabChange={setAppTab}
@@ -2907,12 +3276,17 @@ const App = () => {
         lang={lang} setLang={setLang}
         userData={data}
         onLogoutRequest={() => setShowLogoutModal(true)}
-        joinedCount={joinedEvents.length} />;
+        joinedCount={joinedEvents.length}
+        fontSize={fontSize}
+        setFontSize={setFontSize}
+        theme={theme}
+        setTheme={setTheme}
+        onBack={() => setAppTab('map')} />;
     }
   }
 
   return (
-    <div className="phone">
+    <div className={`phone ${fontSize === 'large' ? 'font-large' : ''}`} data-theme={theme}>
       {content}
       {toast && <Toast message={toast.message} type={toast.type} onDone={() => setToast(null)} lang={lang} />}
       {showGreeting && (
